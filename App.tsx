@@ -13,47 +13,51 @@ import {
   StyleSheet,
   View,
   Text,
+  Button,
+  Alert,
 } from 'react-native';
 
-
-import Realm from 'realm';
+import realm from './components/realm';
 
 class App extends React.Component {
-  state: any;
+  doughEvents: any;
   constructor(props: Readonly<{}>) {
     super(props);
-    this.state = { realm: null };
-  }
-
-  componentDidMount() {
-    Realm.open({
-      schema: [{name: 'Dog', properties: {name: 'string'}}]
-    }).then(realm => {
-      realm.write(() => {
-        realm.create('Dog', {name: 'Rex'});
-      });
-      this.setState({ realm });
+    this.doughEvents = realm.objects('DoughEvent');
+    this.doughEvents.addListener((name: any, changes: any) => {
+      console.log("changed: " + JSON.stringify(changes));
     });
+    console.log("registered listener");
   }
 
-  componentWillUnmount() {
-    // Close the realm if there is one open.
-    const {realm} = this.state;
-    if (realm !== null && !realm.isClosed) {
-      realm.close();
-    }
+  onButtonPress = () => {
+    realm.write(() => {
+      realm.create('DoughEvent', { name: 'Feed', creationDate: new Date() });
+    });
+    this.forceUpdate();
   }
 
   render() {
-    const info = this.state.realm
-      ? 'Number of dogs in this Realm: ' + this.state.realm.objects('Dog').length
+    const info = realm
+      ? 'Number of dough events: ' + this.doughEvents.length
       : 'Loading...';
+
+    const lastUpdateInfo = this.doughEvents.length > 0
+      ? 'Last Update: ' + this.doughEvents[this.doughEvents.length - 1].creationDate
+      : '';
 
     return (
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>
           {info}
         </Text>
+        <Text style={styles.sectionTitle}>
+          {lastUpdateInfo}
+        </Text>
+        <Button
+          title="Feed"
+          onPress={this.onButtonPress}
+        />
       </View>
     );
   }
