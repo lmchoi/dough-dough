@@ -11,26 +11,23 @@
 import React from 'react';
 import {StyleSheet, View, Text, Button} from 'react-native';
 
-import realm from './components/realm';
+import repo from './components/repo';
+import {DoughEvent} from './components/DoughEvent';
 
 class App extends React.Component {
-  doughEvents: any;
+  doughEvents: Realm.Results<DoughEvent>;
   constructor(props: Readonly<{}>) {
     super(props);
-    this.doughEvents = realm.objects('DoughEvent');
+    this.doughEvents = repo.loadDoughEvents();
   }
 
   onButtonPress = () => {
-    realm.write(() => {
-      realm.create('DoughEvent', {name: 'Feed', creationDate: new Date()});
-    });
+    repo.saveDoughEvent({name: 'Feed', creationDate: new Date()});
     this.forceUpdate();
   };
 
   render() {
-    const info = realm
-      ? 'Number of dough events: ' + this.doughEvents.length
-      : 'Loading...';
+    const info = 'Number of dough events: ' + this.doughEvents.length;
 
     const lastUpdateInfo =
       this.doughEvents.length > 0
