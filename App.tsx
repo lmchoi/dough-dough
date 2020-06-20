@@ -11,7 +11,7 @@
 import React from 'react';
 import {StyleSheet, View, Text, Button} from 'react-native';
 
-import repo from './components/repo';
+import repo from './components/Repository';
 import {DoughEvent} from './components/DoughEvent';
 
 class App extends React.Component {
