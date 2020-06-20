@@ -3,11 +3,11 @@
 import Realm from 'realm';
 
 const DoughEvent: Realm.ObjectSchema = {
-    name: 'DoughEvent',
-    properties: {
-        name: 'string',
-        creationDate: 'date',
-    }
-}
+  name: 'DoughEvent',
+  properties: {
+    name: 'string',
+    creationDate: 'date',
+  },
+};
 
-export default new Realm({ schema: [DoughEvent] });
+export default new Realm({schema: [DoughEvent]});

@@ -9,13 +9,7 @@
  */
 
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Button,
-  Alert,
-} from 'react-native';
+import {StyleSheet, View, Text, Button} from 'react-native';
 
 import realm from './components/realm';
 
@@ -24,45 +18,35 @@ class App extends React.Component {
   constructor(props: Readonly<{}>) {
     super(props);
     this.doughEvents = realm.objects('DoughEvent');
-    this.doughEvents.addListener((name: any, changes: any) => {
-      console.log("changed: " + JSON.stringify(changes));
-    });
-    console.log("registered listener");
   }
 
   onButtonPress = () => {
     realm.write(() => {
-      realm.create('DoughEvent', { name: 'Feed', creationDate: new Date() });
+      realm.create('DoughEvent', {name: 'Feed', creationDate: new Date()});
     });
     this.forceUpdate();
-  }
+  };
 
   render() {
     const info = realm
       ? 'Number of dough events: ' + this.doughEvents.length
       : 'Loading...';
 
-    const lastUpdateInfo = this.doughEvents.length > 0
-      ? 'Last Update: ' + this.doughEvents[this.doughEvents.length - 1].creationDate
-      : '';
+    const lastUpdateInfo =
+      this.doughEvents.length > 0
+        ? 'Last Update: ' +
+          this.doughEvents[this.doughEvents.length - 1].creationDate
+        : '';
 
     return (
       <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>
-          {info}
-        </Text>
-        <Text style={styles.sectionTitle}>
-          {lastUpdateInfo}
-        </Text>
-        <Button
-          title="Feed"
-          onPress={this.onButtonPress}
-        />
+        <Text style={styles.sectionTitle}>{info}</Text>
+        <Text style={styles.sectionTitle}>{lastUpdateInfo}</Text>
+        <Button title="Feed" onPress={this.onButtonPress} />
       </View>
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   engine: {
