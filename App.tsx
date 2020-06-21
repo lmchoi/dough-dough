@@ -1,79 +1,19 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
+import 'react-native-gesture-handler';
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {HomeScreen} from './components/HomeScreen';
+import {LoafRecordScreen} from './components/LoafRecordScreen';
 
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Text, Button, FlatList} from 'react-native';
-import repo from './components/Repository';
+const Stack = createStackNavigator();
 
 export default function App() {
-  const getlastUpdateMessage = () => {
-    return doughEvents.length > 0
-      ? 'Last Update: ' + doughEvents[doughEvents.length - 1].creationDate
-      : '';
-  };
-
-  const createEventButton = (eventName: string) => {
-    return (
-      <Button
-        title={eventName}
-        onPress={() => {
-          repo.saveDoughEvent({name: eventName, creationDate: new Date()});
-          setLastUpdateInfo(getlastUpdateMessage());
-        }}
-      />
-    );
-  };
-  const doughEvents = repo.loadDoughEvents();
-  const [lastUpdateInfo, setLastUpdateInfo] = useState(getlastUpdateMessage());
-
   return (
-    <View style={styles.container}>
-      <View style={styles.sectionDetails}>
-        <Text style={styles.label}>{lastUpdateInfo}</Text>
-        <View style={styles.button}>{createEventButton('Feed')}</View>
-        <View style={styles.button}>{createEventButton('Mix')}</View>
-        <View style={styles.button}>{createEventButton('Bake')}</View>
-      </View>
-      <View style={styles.sectionList}>
-        <FlatList
-          data={doughEvents}
-          renderItem={({item}) => (
-            <Text>{item.name + '   ' + item.creationDate}</Text>
-          )}
-          keyExtractor={(item, index) => '' + item.id}
-        />
-      </View>
-      <Button
-        title="Clear"
-        onPress={() => {
-          repo.removeAll();
-          setLastUpdateInfo(getlastUpdateMessage());
-        }}
-      />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="LoafRecord" component={LoafRecordScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 128,
-    marginHorizontal: 16,
-    height: 300,
-  },
-  sectionList: {},
-  sectionDetails: {},
-  label: {
-    fontSize: 18,
-  },
-  button: {
-    backgroundColor: 'powderblue',
-  },
-});
