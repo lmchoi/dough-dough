@@ -9,8 +9,7 @@
  */
 
 import React from 'react';
-import {StyleSheet, View, Text, Button} from 'react-native';
-
+import {StyleSheet, View, Text, Button, FlatList} from 'react-native';
 import repo from './components/Repository';
 import {DoughEvent} from './components/DoughEvent';
 
@@ -27,8 +26,6 @@ class App extends React.Component {
   };
 
   render() {
-    const info = 'Number of dough events: ' + this.doughEvents.length;
-
     const lastUpdateInfo =
       this.doughEvents.length > 0
         ? 'Last Update: ' +
@@ -36,27 +33,41 @@ class App extends React.Component {
         : '';
 
     return (
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>{info}</Text>
-        <Text style={styles.sectionTitle}>{lastUpdateInfo}</Text>
-        <Button title="Feed" onPress={this.onButtonPress} />
+      <View style={styles.container}>
+        <View style={styles.sectionDetails}>
+          <Text style={styles.label}>{lastUpdateInfo}</Text>
+          <View style={styles.button}>
+            <Button title="Feed" onPress={this.onButtonPress} />
+          </View>
+        </View>
+        <View style={styles.sectionList}>
+          <FlatList
+            data={this.doughEvents}
+            renderItem={({item}) => <Text>{item.name + "   " + item.creationDate}</Text>}
+            keyExtractor={(item, index) => '' + item.id}
+          />
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  engine: {
-    position: 'absolute',
-    right: 0,
+  container: {
+    flex: 1,
+    marginTop: 128,
+    marginHorizontal: 16,
+    height: 300,
   },
-  sectionContainer: {
-    marginTop: 132,
-    paddingHorizontal: 24,
+  sectionList: {
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  sectionDetails: {
+  },
+  label: {
+    fontSize: 18,
+  },
+  button: {
+    backgroundColor: 'powderblue',
   },
 });
 
