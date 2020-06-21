@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, Button, FlatList} from 'react-native';
 import repo from './Repository';
+import {useRoute} from '@react-navigation/native';
 
 export function LoafRecordScreen() {
+  const route = useRoute();
+  const {loafRecordId} = route.params;
+
   const getlastUpdateMessage = () => {
     return doughEvents.length > 0
       ? 'Last Update: ' + doughEvents[doughEvents.length - 1].creationDate
@@ -14,13 +18,21 @@ export function LoafRecordScreen() {
       <Button
         title={eventName}
         onPress={() => {
-          repo.saveDoughEvent({name: eventName, creationDate: new Date()});
+          repo.saveDoughEvent({
+            name: eventName,
+            creationDate: new Date(),
+            loafRecord: loafRecord,
+          });
           setLastUpdateInfo(getlastUpdateMessage());
         }}
       />
     );
   };
-  const doughEvents = repo.loadDoughEvents();
+
+  const [loafRecord, setLoafRecord] = useState(
+    repo.loadLoafRecord(loafRecordId),
+  );
+  const doughEvents = loafRecord.steps;
   const [lastUpdateInfo, setLastUpdateInfo] = useState(getlastUpdateMessage());
 
   return (
