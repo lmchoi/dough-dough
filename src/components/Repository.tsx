@@ -34,7 +34,7 @@ class Repository {
     loafRecord: LoafRecord;
   }) {
     realm.beginTransaction();
-    const events = realm.objects('DoughEvent');
+    const events: Realm.Results<DoughEvent> = realm.objects('DoughEvent');
     const maxId = events.length > 0 ? events.sorted('id', true)[0].id : null;
     const nextId = maxId != null ? maxId + 1 : 0;
     realm.create(

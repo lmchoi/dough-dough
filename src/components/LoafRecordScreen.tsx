@@ -4,7 +4,7 @@ import repo from './Repository';
 import {useRoute} from '@react-navigation/native';
 
 export function LoafRecordScreen() {
-  const route = useRoute();
+  const route: any = useRoute();
   const {loafRecordId} = route.params;
 
   const getlastUpdateMessage = () => {
