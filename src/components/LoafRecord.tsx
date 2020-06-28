@@ -1,4 +1,4 @@
-import { DoughEvent } from "./DoughEvent";
+import {DoughEvent} from './DoughEvent';
 
 export class LoafRecord {
   static schema: Realm.ObjectSchema;
@@ -22,6 +22,10 @@ LoafRecord.schema = {
     id: 'int',
     name: 'string',
     creationDate: 'date',
-    steps: {type: 'linkingObjects', objectType: 'DoughEvent', property: 'record'}
+    steps: {
+      type: 'linkingObjects',
+      objectType: 'DoughEvent',
+      property: 'record',
+    },
   },
 };

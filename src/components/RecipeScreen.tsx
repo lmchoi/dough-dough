@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Text, Button, FlatList} from 'react-native';
+import {StyleSheet, View, Text, FlatList} from 'react-native';
 import recipe from '@recipes/tartine.json';
 
 export function RecipeScreen() {

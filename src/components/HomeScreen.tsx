@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, FlatList, Button} from 'react-native';
+import {View, FlatList, Button} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import repo from '../helpers/Repository';
 
@@ -30,4 +30,3 @@ export function HomeScreen() {
     </View>
   );
 }
-

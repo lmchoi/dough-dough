@@ -29,9 +29,7 @@ export function LoafRecordScreen() {
     );
   };
 
-  const [loafRecord, setLoafRecord] = useState(
-    repo.loadLoafRecord(loafRecordId),
-  );
+  const loafRecord = repo.loadLoafRecord(loafRecordId);
   const doughEvents = loafRecord.steps;
   const [lastUpdateInfo, setLastUpdateInfo] = useState(getlastUpdateMessage());
 

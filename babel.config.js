@@ -13,6 +13,6 @@ module.exports = {
           '@helpers': './src/helpers',
         },
       },
-    ]
-  ]
+    ],
+  ],
 };
