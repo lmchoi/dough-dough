@@ -2,14 +2,13 @@ import React from 'react';
 import {View, StyleSheet, FlatList, Button} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import repo from '../helpers/Repository';
-import recipe from '@recipes/tartine.json';
 
 export function HomeScreen() {
   const loafRecords = repo.loadLoafRecords();
   const navigation = useNavigation();
-  console.log(recipe);
+
   return (
-    <View style={styles.container}>
+    <View>
       <FlatList
         data={loafRecords}
         renderItem={({item}) => (
@@ -24,13 +23,11 @@ export function HomeScreen() {
         )}
         keyExtractor={(item, _) => '' + item.id}
       />
+      <Button
+        title="Tartine Country Bread"
+        onPress={() => navigation.navigate('Recipe')}
+      />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-  },
-});

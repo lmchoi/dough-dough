@@ -47,9 +47,10 @@ export function LoafRecordScreen() {
         <FlatList
           data={doughEvents}
           renderItem={({item}) => (
-            <Text>{item.name + '   ' + item.creationDate}</Text>
+            <Text key={'' + item.id}>
+              {item.name + '   ' + item.creationDate}
+            </Text>
           )}
-          keyExtractor={(item, _) => '' + item.id}
         />
       </View>
       <Button
