@@ -1,8 +1,8 @@
 'use strict';
 
 import Realm from 'realm';
-import {DoughEvent} from './DoughEvent';
-import {LoafRecord} from './LoafRecord';
+import {DoughEvent} from '../components/DoughEvent';
+import {LoafRecord} from '../components/LoafRecord';
 
 const realm = new Realm({
   schema: [LoafRecord.schema, DoughEvent.schema],

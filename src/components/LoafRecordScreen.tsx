@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, Button, FlatList} from 'react-native';
-import repo from './Repository';
+import repo from '../helpers/Repository';
 import {useRoute} from '@react-navigation/native';
 
 export function LoafRecordScreen() {
