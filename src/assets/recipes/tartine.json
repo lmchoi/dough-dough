@@ -1,0 +1,62 @@
+{
+    "name": "Tartine",
+    "link": "https://tartinebakery.com/stories/country-bread",
+    "steps": [
+        {
+            "description": "Mix 200 grams of leaven and 700 grams of warm water"
+        },
+        {
+            "description": "Add 900 grams of white-bread flour and 100 grams of whole-wheat flour"
+        },
+        {
+            "description": "Rest at room temperature",
+            "duration": [25, 40]
+        },
+        {
+            "description": "Add 20 grams sea salt and 50 grams of warm water"
+        },
+        {
+            "description": "Rest at 75 to 80 f",
+            "duration": [30]
+        },
+        {
+            "description": "Fold every 30 minutes until 20-30% increase in volume (3-4 hours)",
+            "duration": [30],
+            "repeat": true
+        },
+        {
+            "description": "Pre-shape"
+        },
+        {
+            "description": "Rest on work surface",
+            "duration": [30]
+        },
+        {
+            "description": "Flour towels"
+        },
+        {
+            "description": "Shape"
+        },
+        {
+            "description": "Seam-side up into baskets"
+        },
+        {
+            "description": "Rest in fridge",
+            "duration": [600, 720]
+        },
+        {
+            "description": "Heat oven at 500 f",
+            "duration": [30]
+        },
+        {
+            "description": "Place in oven and score, reduce to 450 f",
+            "duration": [20]
+        },
+        {
+            "description": "Remove lid and cook until golden",
+            "duration": [20]
+        }
+    ]
+
+}
+

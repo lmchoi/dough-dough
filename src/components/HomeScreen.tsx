@@ -2,10 +2,12 @@ import React from 'react';
 import {View, StyleSheet, FlatList, Button} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import repo from '../helpers/Repository';
+import recipe from '@recipes/tartine.json';
 
 export function HomeScreen() {
   const loafRecords = repo.loadLoafRecords();
   const navigation = useNavigation();
+  console.log(recipe);
   return (
     <View style={styles.container}>
       <FlatList
